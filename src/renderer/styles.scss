@@ -1,7 +1,27 @@
 @import "../../node_modules/bulma/bulma.sass";
 
+html {
+  background-color: #212733;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
 .Root {
   text-align: center;
   color: #ccc;
   background-color: #50509a;
+}
+
+.footer {
+  position: fixed;
+  padding: 10px 10px 0 10px;
+  bottom: 0;
+  width: 100vw;
+  height: 250px;
+
+  background-image: url(../main/resources/waves.svg);
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
 }

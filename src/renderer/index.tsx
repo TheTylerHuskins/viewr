@@ -19,7 +19,7 @@ const Root: React.FC = () => {
     <TeachingBubble 
       headline='PLEASE READ'
       calloutProps={{directionalHint: DirectionalHint.bottomCenter}} 
-      target='#like-button'
+      target='#h1'
       isWide={true}
       hasCloseButton={true}
       onDismiss={hideBubble}>
@@ -27,14 +27,18 @@ const Root: React.FC = () => {
     </TeachingBubble>);
 
   return (
-    <div className={styles.Root}>
-      <h1>Viewr</h1> 
-      <p>{showBubble ? 'show' : 'hide'}</p>
-      <DefaultButton text='Like' id='like-button'/>
-      <PrimaryButton text='Subscribe' onClick={displayBubble}/>
+    <body>
+      <header>
+        <div className={styles.Root}>
+          <h1 id="h1">Viewr</h1> 
+          <p>{showBubble ? 'show' : 'hide'}</p>
+          <PrimaryButton text='Show Bubble' onClick={displayBubble}/>
 
-      {showBubble && bubble}
-    </div>
+          {showBubble && bubble}
+        </div>
+      </header>
+      <footer className={styles.footer}></footer>
+    </body>
   );
 }
 

@@ -2,7 +2,7 @@
 
 import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
-import { format as formatUrl } from 'url'
+import { format } from 'url'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -11,22 +11,27 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 let mainWindow: BrowserWindow | null;
 
 function createMainWindow() {
-  const window = new BrowserWindow({ webPreferences: { nodeIntegration: true } });
+  const window = new BrowserWindow({
+    title: 'Viewr',
+    width: 1050,
+    height: 900,
+    icon: path.join(__dirname, 'resources/viewr-icon.ico'),
+    autoHideMenuBar: true, // TODO: Add menu options
+    webPreferences: { nodeIntegration: true }
+  });
 
   app.whenReady().then(() => {
     installExtension(REACT_DEVELOPER_TOOLS)
       .then(name => {
         console.log(`${name} installed successfully`);
-        if (isDevelopment) {
-          window.webContents.openDevTools();
-        }
+        if (isDevelopment) { window.webContents.openDevTools(); }
       });
   });
 
   if (isDevelopment) { window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`) }
   else {
     window.loadURL(
-      formatUrl({
+      format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file',
         slashes: true
